@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <title>
+    Gullak
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/29548356?s=32&v=4" />
+  <script type="text/javascript">
+    const host = '//gullak.onrender.com'
+
+    const getPage = async (path) => {
+      if (path.startsWith('/go/')) {
+        window.location.href = host + path
+      } else {
+        const response = await fetch(host + path)
+        const html = await response.text()
+
+        const parser = new DOMParser()
+        return parser.parseFromString(html, 'text/html')
+      }
+    }
+
+    (async () => {
+      const path = window.location.href.replace('https://abskmj.github.io/gullak', '').replace('/#', '')
+
+      const page = await getPage(path)
+
+      document.body.innerHTML = page.body.innerHTML
+      document.title = page.title
+    })()
+  </script>
+</head>
+<body></body>
+</html>
