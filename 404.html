@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bachat</title>
+    <title>Gullak</title>
     <script type="text/javascript">
-        const path = window.location.replace('/gullak/', '/gullak/#/')
-        window.location.href = path
+        const url = new URL(window.location.href);
+        url.pathname = url.pathname.replace('/gullak/', '/gullak/#/');
+        window.location.href = url.toString();
     </script>
 </head>
 <body></body>
